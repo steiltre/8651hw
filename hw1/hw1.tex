@@ -1,0 +1,57 @@
+%        File: hw1.tex
+%     Created: Wed Sep 14 04:00 PM 2016 C
+% Last Change: Wed Sep 14 04:00 PM 2016 C
+%
+
+\documentclass[a4paper]{article}
+
+\title{Homework 1 }
+\date{9/21/16}
+\author{Trevor Steil}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{claim}{Claim}
+\newtheorem*{problem}{Problem}
+%\newtheorem*{lemma}{Lemma}
+\newtheorem{definition}{Definition}[section]
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\supp}[1]{\mathop{\mathrm{supp}}\left(#1\right)}
+\newcommand{\lip}[1]{\mathop{\mathrm{Lip}}\left(#1\right)}
+\newcommand{\curl}{\mathrm{curl}}
+\newcommand{\la}{\left \langle}
+\newcommand{\ra}{\right \rangle}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newenvironment{solution}{\emph{Solution.}}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+  \item
+    Let $X_1, X_2, \dots $ be random variables from $( \Omega, \mathcal{F}, P )$ to $\overline{ \R }$. Show that $\liminf_{n \to \infty} X_n$ is measureable.
+
+  \item
+    Suppose that $F$ is a distribution function. Is it true that $F$ has only countably many jumps?
+
+  \item
+    Suppose that $Y_n$ are random variables from $( \Omega, \mathcal{F}, P )$ to $\R$ such that $Y_n(\omega) \to Y(\omega)$ for each $\omega \in \Omega$. Show that $\forall \delta > 0, \ \exists$ a set $A$ with $P(A) < \delta$, so that $Y_n(\omega) \to Y(\omega)$ uniformly on $A^c$.
+
+  \item
+    A probability space $ ( \Omega, \mathcal{F}, P )$ is said to be nonatomic if for each $A \in \mathcal{F}$ with $P(A) > 0$, there exists $B \subset A$ with $0 < P(B) < P(A)$. Show that, for each nonatomic probability measure, there is a $C \in \mathcal{F}$ with $P(C) = \frac{1}{2}$.
+
+\end{enumerate}
+
+\end{document}
+
+
