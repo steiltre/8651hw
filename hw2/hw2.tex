@@ -1,0 +1,102 @@
+%        File: hw2.tex
+%     Created: Wed Oct 05 04:00 PM 2016 C
+% Last Change: Wed Oct 05 04:00 PM 2016 C
+%
+
+\documentclass[a4paper]{article}
+
+\title{Math 8651 Homework 2 }
+\date{10/17/16}
+\author{Trevor Steil}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{esint}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{claim}{Claim}
+\newtheorem*{problem}{Problem}
+%\newtheorem*{lemma}{Lemma}
+\newtheorem{definition}{Definition}[section]
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\supp}[1]{\mathop{\mathrm{supp}}\left(#1\right)}
+\newcommand{\lip}[1]{\mathop{\mathrm{Lip}}\left(#1\right)}
+\newcommand{\curl}{\mathrm{curl}}
+\newcommand{\la}{\left \langle}
+\newcommand{\ra}{\right \rangle}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newenvironment{solution}{\emph{Solution.}}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+  \item
+    \begin{problem}
+
+      Let $\{A_n\}$ be a countable collection of measurable sets with respect to the probability space $(\Omega, \mathcal{F}, P)$, and assume that
+      there exists $\delta > 0$ such that $P(A_n) > \delta$ for all $n$. True or false: there is at least one point in $\Omega$ which belongs to
+      infinitely many $A_n$.
+
+    \end{problem}
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item
+    \begin{problem}
+
+      Assume $X \geq 0$, where $X$ is a real valued random variable. Is $\sigma^2(X \wedge y)$ an increasing function of $y$?
+
+    \end{problem}
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item
+
+    \begin{problem}
+
+      Let $X_1, X_2, \dots$ be real valued random variables on the same probability space $(\Omega, \mathcal{F}, P)$, with density functions
+      \[ f_{X_n}(x) =
+        \begin{cases}
+          e^n &\text{on } \left( 0, e^{-n} \left( 1 - \frac{1}{n} \right) \right) \\
+          \frac{1}{x^2} &\text{on } (n, \infty)
+        \end{cases}
+      \]
+      and assume that $X_1, X_2, \dots$ are independent. What can you say about $S_n = X_1 + \dots + X_n$ as $n \to \infty$?
+
+    \end{problem}
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item
+
+    \begin{problem}
+
+      If $X_1, X_2,\dots$ is a sequence of identically distributed real valued random variables on the same probability space, with finite
+      expectations, then is it necessarily the case that
+      \[ \lim_{n \to \infty} \frac{1}{n} \mathbb{E} \left[ \max_{1 \leq j \leq n} |X_j| \right] = 0 ? \]
+
+    \end{problem}
+
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+\end{document}
+
+
