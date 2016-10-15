@@ -13,6 +13,7 @@
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{esint}
+\usepackage{bbm}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[section]
@@ -27,6 +28,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
 \newcommand{\supp}[1]{\mathop{\mathrm{supp}}\left(#1\right)}
 \newcommand{\lip}[1]{\mathop{\mathrm{Lip}}\left(#1\right)}
 \newcommand{\curl}{\mathrm{curl}}
@@ -50,6 +52,19 @@
     \end{problem}
 
     \begin{solution}
+      Define the random variables
+      \[ X_n = \mathbbm{1}_{A_n} \]
+      for all $n$. Let
+      \[ X = \sum_{i=1}^\infty X_i .\]
+      The partial sums $\sum_{i=1}^N X_i$ are an increasing sequence of random variables. Therefore,
+      \begin{align*}
+        \E[X] &= \lim_{N \to \infty} \sum_{i=1}^N \E[X_i] \\
+        &> \lim_{N \to \infty} \sum_{i=1}^N \delta \\
+        &= \lim_{N \to \infty} N \delta \\
+        &\to \infty
+      \end{align*}
+
+      Therefore, there is a set $B \subset \Omega$ such that $P(B) > 0$ and $X(\omega) = \infty$ for all $\omega \in B$.
 
     \end{solution}
 
