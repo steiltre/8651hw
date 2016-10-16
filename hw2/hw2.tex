@@ -77,6 +77,58 @@
 
     \begin{solution}
 
+      This statement is true. To show this, we will need to be able to compute moments.
+
+      \begin{claim}
+        Let $X$ be a random variable with $X \geq 0$. Then
+        \[ \E[ X^n ] = n \int_{0}^{\infty} x^{n-1} (1 - P(\{ X \leq x \}) dx .\]
+      \end{claim}
+      \begin{proof}
+
+        We can write
+        \[ X^n = n \int_{0}^{X} x^{n-1} dx .\]
+        Then
+        \begin{align*}
+          \E[X^n] &= \int_{\Omega}^{} X^n dP \\
+          &= \int_{\Omega}^{} n \int_{0}^{X} x^{n-1} dx dP \\
+          &= n \int_{0}^{\infty} \int_{\{X>x\}}^{} x^{n-1} dP dx \quad \parbox{5cm}{by Tonelli's Theorem}\\
+          &= n \int_{0}^{\infty} x^{n-1} P(\{ X > x \}) dx \\
+          &= n \int_{0}^{\infty} x^{n-1} (1 - P( \{ X \leq x \} ) dx
+        \end{align*}
+
+        Notice that we were able to use Tonelli's Theorem to change the order of integration because $X \geq 0$.
+
+      \end{proof}
+
+      We have
+      \begin{align*}
+        \E[ X \wedge y ] &= \int_{0}^{\infty} (1 - P( \{ X \wedge y \leq x \}) dx \\
+        &= \int_{0}^{y} (1 - P( \{ X \leq x \} ) dx \\
+        &= \int_{0}^{y} P( \{ X \geq x \} dx
+      \end{align*}
+
+      Therefore,
+      \[ \frac{d}{dy} \E [ X \wedge y ] = P( \{ X \geq y \} ) .\]
+
+      By our previous claim,
+      \begin{align*}
+        \E[ (X \wedge y)^2 ] &= 2 \int_{0}^{\infty} x ( 1 - P( \{ X \wedge y \leq x\} ))dx \\
+        &= 2 \int_{0}^{y} x ( 1 - P( \{ X \leq x \}) ) dx \\
+        &= 2 \int_{0}^{y} x P( \{ X \geq x \} ) dx
+      \end{align*}
+
+      Therefore,
+      \[ \frac{d}{dy} \E[ (X \wedge y)^2 ] = 2 y P( \{ X \geq y \} ) .\]
+
+      Taking the derivative of the variance gives
+      \begin{align*}
+        \frac{d}{dy} \sigma^2 ( X \wedge y ) &= \frac{d}{dy} \left( \E[ (X \wedge y)^2 ] - \E[ X \wedge y ]^2 \right) \\
+        &= \frac{d}{dy} \E[ (X \wedge y)^2 ] - 2 \E[ X \wedge y ] \frac{d}{dy} \E[ X \wedge y ] \\
+        &= 2 P( \{ X \geq y \} ) ( y - \E[ X \wedge y ] ) \\
+        &\geq 0
+      \end{align*}
+      using the fact that $X \wedge y \leq y$, so $\E[ X \wedge y ] \leq y$.
+
     \end{solution}
 
   \item
