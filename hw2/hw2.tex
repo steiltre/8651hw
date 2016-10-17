@@ -52,19 +52,37 @@
     \end{problem}
 
     \begin{solution}
-      Define the random variables
-      \[ X_n = \mathbbm{1}_{A_n} \]
-      for all $n$. Let
-      \[ X = \sum_{i=1}^\infty X_i .\]
-      The partial sums $\sum_{i=1}^N X_i$ are an increasing sequence of random variables. Therefore,
-      \begin{align*}
-        \E[X] &= \lim_{N \to \infty} \sum_{i=1}^N \E[X_i] \\
-        &> \lim_{N \to \infty} \sum_{i=1}^N \delta \\
-        &= \lim_{N \to \infty} N \delta \\
-        &\to \infty
-      \end{align*}
+      %Define the random variables
+      %\[ X_n = \mathbbm{1}_{A_n} \]
+      %for all $n$. Let
+      %\[ X = \sum_{i=1}^\infty X_i .\]
+      %The partial sums $\sum_{i=1}^N X_i$ are an increasing sequence of random variables. Therefore,
+      %\begin{align*}
+      %  \E[X] &= \lim_{N \to \infty} \sum_{i=1}^N \E[X_i] \\
+      %  &> \lim_{N \to \infty} \sum_{i=1}^N \delta \\
+      %  &= \lim_{N \to \infty} N \delta \\
+      %  &\to \infty
+      %\end{align*}
 
-      Therefore, there is a set $B \subset \Omega$ such that $P(B) > 0$ and $X(\omega) = \infty$ for all $\omega \in B$.
+      %Therefore, there is a set $B \subset \Omega$ such that $P(B) > 0$ and $X(\omega) = \infty$ for all $\omega \in B$.
+
+      We are interested in the event that $\omega \in A_n$ for infinitely many $n$. We can look at
+      \[ A = \limsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_n .\]
+
+      Define the sets
+      \[ B_n = \bigcup_{k=n}^\infty A_k \]
+      for $n \geq 1$. Because we are taking unions of fewer sets, we see ${B_1 \supset B_2 \supset \dots}$.
+
+      Therefore, by continuity of measure,
+      \begin{align*}
+        P(A) &= P \left( \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_n \right) \\
+        &= P \left( \bigcap_{n=1}^\infty B_n \right) \\
+        &= \lim_{n \to \infty} P(B_n) \\
+        &= \lim_{n \to \infty} P \left( \bigcup_{k=n}^\infty A_k \right) \\
+        &\geq \delta
+      \end{align*}
+      because $P(A_k) > \delta$ for all $k$. Therefore, the set of $\omega$ such that $\omega \in A_n$ for infinitely many $n$ has positive measure,
+      and there is at least one point in $\Omega$ which belongs to infinitely many $A_n$.
 
     \end{solution}
 
@@ -127,7 +145,7 @@
         &= 2 P( \{ X \geq y \} ) ( y - \E[ X \wedge y ] ) \\
         &\geq 0
       \end{align*}
-      using the fact that $X \wedge y \leq y$, so $\E[ X \wedge y ] \leq y$.
+      using the fact that $X \wedge y \leq y$, so $\E[ X \wedge y ] \leq y$. Thus $\sigma^2(X \wedge y)$ is an increasing function of $y$.
 
     \end{solution}
 
@@ -148,6 +166,36 @@
 
     \begin{solution}
 
+      Let $A_n = \{ \omega \in \Omega : X_n(\omega) \geq n \}$. Then
+      \begin{align*}
+        P(A_n) &= \int_{\Omega}^{} \mathbbm{1}_{A_n} dP \\
+        &= \int_{n}^{\infty} \frac{1}{x^2} dx \\
+        &= \frac{1}{n}
+      \end{align*}
+
+      Then
+      \[ \sum_{i=1}^\infty \frac{1}{n} = \infty .\]
+      Because the $X_n$ are independent, we can apply Borel-Cantelli to get
+      \[ P(A) = 1 \]
+      where $A = \limsup_{n \to \infty} A_n$. That is, with probability 1, $X_n \geq n$ for infinitely many $n$. Therefore, as $n \to \infty$, $S_n$
+      is infinite almost surely.
+
+      Let $B_n = \{ \omega \in \Omega : X_n(\omega) \leq e^{-n} \left( 1 - \frac{1}{n} \right) \}$. Then
+      \begin{align*}
+        P(B_n) &= \int_{\Omega}^{} \mathbbm{1}_{B_n} dP \\
+        &= \int_{0}^{e^{-n}\left(1-\frac{1}{n} \right)} e^n dx \\
+        &= 1 - \frac{1}{n}
+      \end{align*}
+
+      \[ \sum_{i=1}^\infty 1 - \frac{1}{i} = \infty, \]
+      so by Borel Cantelli again, we have that $X_n \leq e^{-n} \left( 1 - \frac{1}{n} \right)$ for infinitely many $n$ almost surely.
+
+      Our contribution from $X_n \leq e^{-n} \left( 1 - \frac{1}{n} \right)$ will be finite because
+      \begin{align*}
+        \sum_{n=1}^\infty e^{-n} \left( 1 - \frac{1}{n} \right) &\leq \sum_{n=1}^\infty e^{-n} \\
+        < \infty
+      \end{align*}
+
     \end{solution}
 
   \item
@@ -161,6 +209,18 @@
     \end{problem}
 
     \begin{solution}
+
+      This statement is true. The random variables $X_i$ are identically distributed, so we can define $\mu' = \E[|X_i|]$ for all $i$. $\mu' < \infty$
+      because the $X_i$ have finite expectation. There is a small subtlety in the definitions for this to be true. For a random variable $Y$, $\E[Y] =
+      \E[Y_+] - \E[Y_-]$, where we have split $Y$ into positive and negative parts. This value is only defined when the difference has a meaningful
+      value, that is when at least one of $\E[Y_+]$ and $\E[Y_-]$ is finite. Therefore, $Y$ having finite expectation means both pieces must be
+      finite, and $\E[|Y|] = \E[Y_+] + \E[Y_-] < \infty$. This prevents counterexamples in which integrals are interpreted as principal value
+      integrals.
+
+      For any $n$, we have
+      \begin{align*}
+        %\frac{1}{n} \E[ \max_{1 \leq i \leq n |X_i| ]
+      \end{align*}<++>
 
     \end{solution}
 \end{enumerate}
