@@ -174,7 +174,7 @@
       \end{align*}
 
       Then
-      \[ \sum_{i=1}^\infty \frac{1}{n} = \infty .\]
+      \[ \sum_{i=1}^\infty \frac{1}{i} = \infty .\]
       Because the $X_n$ are independent, we can apply Borel-Cantelli to get
       \[ P(A) = 1 \]
       where $A = \limsup_{n \to \infty} A_n$. That is, with probability 1, $X_n \geq n$ for infinitely many $n$. Therefore, as $n \to \infty$, $S_n$
@@ -210,17 +210,34 @@
 
     \begin{solution}
 
-      This statement is true. The random variables $X_i$ are identically distributed, so we can define $\mu' = \E[|X_i|]$ for all $i$. $\mu' < \infty$
-      because the $X_i$ have finite expectation. There is a small subtlety in the definitions for this to be true. For a random variable $Y$, $\E[Y] =
-      \E[Y_+] - \E[Y_-]$, where we have split $Y$ into positive and negative parts. This value is only defined when the difference has a meaningful
-      value, that is when at least one of $\E[Y_+]$ and $\E[Y_-]$ is finite. Therefore, $Y$ having finite expectation means both pieces must be
-      finite, and $\E[|Y|] = \E[Y_+] + \E[Y_-] < \infty$. This prevents counterexamples in which integrals are interpreted as principal value
-      integrals.
+%      This statement is true. The random variables $X_i$ are identically distributed, so we can define $\mu' = \E[|X_i|]$ for all $i$. $\mu' < \infty$
+%      because the $X_i$ have finite expectation. There is a small subtlety in the definitions for this to be true. For a random variable $Y$, $\E[Y] =
+%      \E[Y_+] - \E[Y_-]$, where we have split $Y$ into positive and negative parts. This value is only defined when the difference has a meaningful
+%      value, that is when at least one of $\E[Y_+]$ and $\E[Y_-]$ is finite. Therefore, $Y$ having finite expectation means both pieces must be
+%      finite, and $\E[|Y|] = \E[Y_+] + \E[Y_-] < \infty$. This prevents counterexamples in which integrals are interpreted as principal value
+%      integrals.
+%
+%      For any $n$, we have
+%      \begin{align*}
+%        %\frac{1}{n} \E[ \max_{1 \leq i \leq n |X_i| ]
+%      \end{align*}<++>
 
-      For any $n$, we have
+      Let $\beta > 0$. Then we have
       \begin{align*}
-        %\frac{1}{n} \E[ \max_{1 \leq i \leq n |X_i| ]
-      \end{align*}<++>
+        \frac{1}{n} \E \left[ \max_{1 \leq j \leq n} |X_j| \right] &= \frac{1}{n} \E \left[ \max_{1 \leq j \leq n} |X_j| \mathbbm{1}_{\{|X_j| \leq \beta\}} + \max_{1 \leq
+        j \leq n} |X_j| \mathbbm{1}_{\{|X_j| > \beta\}} \right] \\
+        &\leq \frac{\beta}{n} + \frac{1}{n} \E \left[ \max_{1 \leq j \leq n} |X_j| \mathbbm{1}_{\{|X_j|>\beta\}} \right] \\
+        &= \frac{\beta}{n} + \frac{1}{n} \E \left[ \sum_{j=1}^n |X_j| \mathbbm{1}_{\{|X_j|>\beta\}} \right] \\
+        &= \frac{\beta}{n} + \frac{1}{n} \E \left[ \sum_{j = 1}^n |X_1| \mathbbm{1}_{\{|X_1|>\beta\}} \right] \quad \parbox{5cm}{because the $X_j$ are identically
+        distributed} \\
+        &= \frac{\beta}{n} + \E \left[ |X_1| \mathbbm{1}_{\{|X_1|>\beta\}} \right]
+      \end{align*}
+
+      Taking the limit as $n \to \infty$, we get that for any $\beta > 0$,
+      \[ \lim_{n \to \infty} \frac{1}{n} \E \left[ \max_{1 \leq j \leq n} | X_j | \right] \leq \E \left[ |X_1| \mathbbm{1}_{\{|X_1| > \beta\}} \right]
+    .\]
+      Because $X_1$ has finite expectation, $\E \left[ |X_1| \mathbbm{1}_{\{|X_1|> \beta\}} \right] \to 0$ as $\beta \to \infty$. Therefore,
+      \[ \lim_{n \to \infty} \frac{1}{n} \E \left[ \max_{1 \leq j \leq n} |X_j| \right] = 0 .\]
 
     \end{solution}
 \end{enumerate}
