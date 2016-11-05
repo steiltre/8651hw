@@ -178,10 +178,13 @@
       \[ \frac{S_n - c_n}{n \log n} \to 0 \text{ in probability} \]
       for
       \begin{align*}
-        c_n &= n \E[\bar{X}_1] \\
+        \frac{c_n}{n \log n} &= n \E[\bar{X}_1] \\
         &= n \sum_{m=1}^{n \log n} 2^{-m} 2^{m} \\
-        &= n^2 \log n
+        &= n^2 \log n .
       \end{align*}
+
+      That is,
+      \[ c_n = n .\]
 
     \end{proof}
 
