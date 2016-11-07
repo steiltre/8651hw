@@ -143,14 +143,15 @@
 
     \begin{proof}
 
-      We will be using Theorem 2.2.6 from Durrett with $b_n = n \log n$.
+      We will be using Theorem 2.2.6 from Durrett with $b_n = n \log n$. For simplicity, we will not be concerned with taking ceilings or floors to
+      ensure all necessary values are integers.
 
       Let
-      \[ \bar{X_n} = X_n \mathbbm{1}_{\{X_n \leq n \log n\} } .\]
+      \[ \overline{X}_n = X_n \mathbbm{1}_{\{X_n \leq n \log n\} } .\]
       First, we compute
       \begin{align*}
         P( |X_k| \geq 2^n ) &= \sum_{m=n}^\infty 2^{-m} \\
-        &= 2^{-n+1}
+        &= 2^{-n}
       \end{align*}
       Using this, we are able to see
       \begin{align*}
@@ -160,25 +161,25 @@
         &= \frac{2}{\log n}
       \end{align*}
       Therefore,
-      \[ \lim_{n \to \infty} P( |X_k| \geq n \log n ) = 0,\]
+      \[ \lim_{n \to \infty} n P( |X_k| \geq n \log n ) = 0,\]
       so (i) from the theorem is satisfied.
 
       \begin{align*}
-        \E [\bar{X_n}^2] &= \sum_{k=1}^{\log ( n \log n )} 2^{-k} 2^{2k} \\
+        \E [\overline{X}_n^2] &= \sum_{k=1}^{\log ( n \log n )} 2^{-k} 2^{2k} \\
         &= \sum_{k=1}^{\log ( n \log n )} 2^k \\
-        &= 2^{\log( n \log n ) + 1} \\
-        &= 2 n \log n
+        &= 2^{\log( n \log n ) + 1} - 2 \\
+        &= 2 n \log n - 2
       \end{align*}
 
       Therefore,
-      \[ \frac{1}{n^2 \log^2 n} n \E[ \bar{X_n}^2 ] = \frac{2}{\log n} \to 0, \]
+      \[ \frac{1}{n^2 \log^2 n} n \E[ \overline{X}_n^2 ] = \frac{2}{\log n} - \frac{2}{n \log^2 n} \to 0, \]
       and (ii) from the theorem is satisfied.
 
       So by Theorem 2.2.6,
       \[ \frac{S_n - c_n}{n \log n} \to 0 \text{ in probability} \]
       for
       \begin{align*}
-        \frac{c_n}{n \log n} &= n \E[\bar{X}_1] \\
+        \frac{c_n}{n \log n} &= n \E[\overline{X}_1] \\
         &= n \sum_{m=1}^{n \log n} 2^{-m} 2^{m} \\
         &= n^2 \log n .
       \end{align*}
