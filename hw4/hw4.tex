@@ -1,0 +1,118 @@
+%        File: hw4.tex
+%     Created: Thu Dec 01 01:00 PM 2016 C
+% Last Change: Thu Dec 01 01:00 PM 2016 C
+%
+
+\documentclass[a4paper]{article}
+
+\title{Math 8651 Homework 4 }
+\date{12/7/16}
+\author{Trevor Steil}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{bbm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{claim}{Claim}
+\newtheorem*{problem}{Problem}
+%\newtheorem*{lemma}{Lemma}
+\newtheorem{definition}{Definition}[section]
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\supp}[1]{\mathop{\mathrm{supp}}\left(#1\right)}
+\newcommand{\lip}[1]{\mathop{\mathrm{Lip}}\left(#1\right)}
+\newcommand{\curl}{\mathrm{curl}}
+\newcommand{\la}{\left \langle}
+\newcommand{\ra}{\right \rangle}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newenvironment{solution}[1][]{\emph{Solution #1}}
+
+\algnewcommand{\Or}{\textbf{ or }}
+\algnewcommand{\And}{\textbf{ or }}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+  \item
+    \begin{problem}
+      Let $X_k, Y_k, k=1,2, \dots$ and $X,Y$ be random variables on the same probability space $(\Omega, F, P)$.
+      \begin{enumerate}
+        \item If $X_k \to X$ in distribution and $Y_k \to Y$ in distribution as $k \to \infty$, is it necessarily true that $(X_k, Y_k) \to (X,Y)$ in
+          distribution? (Interpret this to mean $\E [ f(X_k, Y_k) ] \to E[ f(X,Y) ]$ as $k \to \infty$ for all bounded, continuous $f: \R^2 \to \R$.)
+
+        \item If $X_k \to X$ and $Y_k \to Y$ in probability, is it necessarily true that $(X_k,Y_k) \to (X,Y)$ in probability?
+
+      \end{enumerate}
+
+    \end{problem}
+
+    \begin{solution}
+
+      \begin{enumerate}
+        \item
+
+        \item
+
+      \end{enumerate}
+
+    \end{solution}
+
+  \item
+    \begin{problem}
+      Show that the characteristic function of the Poisson distribution with parameter $\lambda$ is $\exp { \lambda( e^{it} - 1) }$.
+    \end{problem}
+
+    \begin{proof}
+
+    \end{proof}
+
+  \item
+    \begin{problem}
+      Suppose that $X$ and $Y$ are independent random variables and that $X$ and $X+Y$ have the same distribution. What can you say about $Y$?
+      Explain.
+    \end{problem}
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item
+    \begin{problem}
+      Suppose that $\varphi(t)$ is a characteristic function. Is it necessarily true that $|\varphi(t)|$ is a characteristic function? (Hint: consider
+      $\cos t$.
+    \end{problem}
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item
+    \begin{problem}
+      The Central Limit Theorem states that under appropriate condition on IID random variables $X_1, X_2, \dots, \frac{S_n}{\sqrt{n}} \to Z$ weakly,
+      where $Z$ is $N(0,1)$. Why or why not can this convergence be in probability or almost surely?
+    \end{problem}
+
+    \begin{solution}
+
+    \end{solution}
+
+\end{enumerate}
+\end{document}
+
+
