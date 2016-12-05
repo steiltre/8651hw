@@ -79,6 +79,28 @@
           and $(X_k, Y_k) \to (X,Y)$ in distribution.
 
         \item
+          Assume $X_n \to X$ and $Y_n \to Y$ in probability. We are interested in $\{ |(X_n, Y_n) - (X,Y)| > \varepsilon \}$. If $|(X_n, Y_n) - (X,Y)| > \varepsilon$,
+          then $|X_n - X| > \frac{\sqrt{2}}{2} \varepsilon$ or $|Y_n - Y| > \frac{\sqrt{2}}{2} \varepsilon$. This can be proved by contradiction. If
+          $|X_n-X|, |Y_n-Y| \leq \frac{\sqrt{2}}{2} \varepsilon$, then
+          \begin{align*}
+            |(X_n, Y_n) - (X,Y)| &= \sqrt{|X_n-X|^2 + |Y_n-Y|^2} \\
+            &\leq \sqrt{\frac{1}{2} \varepsilon^2 + \frac{1}{2} \varepsilon^2} \\
+            &= \varepsilon
+          \end{align*}
+          Therefore, if $|(X_n, Y_n) - (X, Y)| > \varepsilon$, we must have $|X_n - X| > \frac{\sqrt{2}}{2} \varepsilon$ or $|Y_n - Y| > \frac{\sqrt{2}}{2}
+          \varepsilon$.
+
+          This means
+          \[ \{ |(X_n, Y_n) - (X,Y)| > \varepsilon \} \subseteq \left( \{ |X_n - X| > \frac{\sqrt{2}}{2} \varepsilon \} \times \Omega \right) \cup
+            \left( \{ |Y_n - Y| > \frac{\sqrt{2}}{2} \varepsilon \} \times \Omega \right) .\]
+
+          If we take probabilities, we have
+          \[ P \left( \{ |(X_n, Y_n) - (X,Y)| > \varepsilon \} \right) \leq P \left( \{ |X_n - X| > \frac{\sqrt{2}}{2} \varepsilon \} \right) +
+          P \left( \{ |Y_n - Y| > \frac{\sqrt{2}}{2} \varepsilon \} \right) \]
+          because $P(\Omega) = 1$ (we have abused notation slightly here and are using $P$ for the measure on our original probability space as well
+          as the product space). Both terms on the right go to 0 as $n \to \infty$ because $X_n \to X$ and $Y_n \to Y$ in probability, so
+          \[ \lim_{n \to \infty} P \left( \{ |(X_n, Y_n) - (X,Y)| > \varepsilon \} \right) = 0, \]
+          and $(X_n, Y_n) \to (X,Y)$ in probability.
 
       \end{enumerate}
 
