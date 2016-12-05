@@ -66,6 +66,17 @@
 
       \begin{enumerate}
         \item
+          Let $f: \R^2 \to \R$ be a bounded, continuous function. Let $F_k$, $F$, $G_k$, and $G$ be the distribution functions for $X_k, X, Y_k$ and $Y$, respectively.
+          Each of these measures is finite. Therefore, because $f$ is bounded, we have
+          \[ \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} |f(x,y)| (F_n \times G_k)(dx \times dy) < \infty \]
+          by Tonelli's Theorem. Therefore, we can use Fubini's Theorem to get for any fixed $k$
+          \begin{align*}
+            \lim_{n \to \infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) (F_k \times G_n)(dx \times dy) &= \int_{-\infty}^{\infty} f(x,y)
+            F_k(dx) G(dy)
+          \end{align*}
+          and similarly with $k$ and $n$ switched and $F_k$ and $G_k$ replaced with $F$ and $G$. Therefore,
+          \[ \lim_{n \to \infty} \int_{\R^2}^{} f(x,y) (F_n \times G_n) (dx \times dy) = \int_{\R^2}^{} f(x,y) (F \times G) (dx \times dy) \]
+          and $(X_k, Y_k) \to (X,Y)$ in distribution.
 
         \item
 
@@ -75,10 +86,20 @@
 
   \item
     \begin{problem}
-      Show that the characteristic function of the Poisson distribution with parameter $\lambda$ is $\exp { \lambda( e^{it} - 1) }$.
+      Show that the characteristic function of the Poisson distribution with parameter $\lambda$ is $\exp \left( \lambda( e^{it} - 1) \right)$.
     \end{problem}
 
     \begin{proof}
+
+      Let $X$ be a random variable with a Poisson distribution. We know the probability mass function of $X$ is given by $\frac{\lambda^k
+        e^{-\lambda}}{k!}$. Therefore, we can compute
+        \begin{align*}
+          \varphi(t) &= \E [ e^{itX} ] \\
+          &= \sum_{k=0}^\infty e^{itk} \frac{\lambda^k e^{-\lambda}}{k!} \\
+          &= e^{-\lambda} \sum_{k=0}^\infty \frac{\left( \lambda e^{it} \right)^k}{k!} \\
+          &= e^{-\lambda} \exp \left( \lambda e^{it} \right) \quad \parbox{5cm}{by the power series for $e^x$} \\
+          &= \exp \left( \lambda \left( e^{it} - 1 \right) \right)
+        \end{align*}
 
     \end{proof}
 
@@ -89,7 +110,19 @@
     \end{problem}
 
     \begin{solution}
+      Because $X$ and $X+Y$ have the same distribution. They have the same characteristic function as well. Therefore,
+      \begin{align*}
+        \varphi_X(t) &= \varphi_{X+Y} (t) \\
+        &= \varphi_X(t) \varphi_Y(t) \quad \parbox{5cm}{by independence}
+      \end{align*}
+      for all $t$. Therefore, we have
+      \[ 0 = \varphi_X(t) \left( 1 - \varphi_Y(t) \right) .\]
 
+      $\varphi_X$ is a characteristic function, so $\varphi(0) = 1$ and $\varphi$ is continuous. In particular, there is a neighborhood $U$ of 0 such
+      that $\varphi(t) \neq 0$ for all $t \in U$. Therefore, $\varphi_Y(t) = 1$ for all $t \in U$.
+
+      By definition, $\varphi_Y(t) = \int_{\Omega}^{} e^{itY} dP$. The only way for this
+      to equal $1$ for all $t \in U$ is for $Y=0$ almost surely. Thus, for $X$ and $X+Y$ to have the same distribution, $Y=0$ almost surely.
     \end{solution}
 
   \item
@@ -100,11 +133,38 @@
 
     \begin{solution}
 
+      Consider the discrete random variable with $P(X=-1) = P(X=1) = \frac{1}{2}$. Then
+      \begin{align*}
+        \E [ e^{itX} ] &= \int_{\R}^{} e^{itX} dP \\
+        &= \frac{1}{2} \left( e^{-it} + e^{it} \right) \\
+        &= \cos t
+      \end{align*}
+
+      Therefore, $\cos t$ is the characteristic function for this random variable.
+
+      Now we must show $| \cos t |$ is not a characteristic function. Assume it is. Let $\mu$ be the associated measure. By Theorem 6.2.4 in Chung, we
+      have
+      \[ \mu(x) = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} e^{-itx} | \cos t | dt .\]
+      Because $\cos t$ and $e^{-itx}$ are both $2 \pi$ periodic, we can simplify this to
+      \[ \mu(x) = \frac{1}{2 \pi} \int_{0}^{2\pi} e^{-itx} | \cos t | dt .\]
+
+      We recognize this as the expression for the $x^{th}$ Fourier coefficients for $| \cos t |$. We can write the Fourier series as a cosine series because $| \cos t |$ is an even
+      function. The series that we get is
+      \[ | \cos t | = \frac{2}{\pi} + \frac{4}{\pi} \sum_{m=1}^\infty \frac{(-1)^m}{1 - 4m^2} \cos(2mt) . \]
+
+      We now need to find a negative coefficient in this series. By looking at the second term (and noticing our series had odd terms drop out), we
+      get
+      \begin{align*}
+        \mu(4) &= \frac{4}{\pi} \frac{(-1)^2}{1 - 4 * 2^2} \\
+        &= - \frac{4}{15 \pi}
+      \end{align*}
+      which contradicts $\mu$ being a measure.
+
     \end{solution}
 
   \item
     \begin{problem}
-      The Central Limit Theorem states that under appropriate condition on IID random variables $X_1, X_2, \dots, \frac{S_n}{\sqrt{n}} \to Z$ weakly,
+      The Central Limit Theorem states that under appropriate conditions on IID random variables $X_1, X_2, \dots, \frac{S_n}{\sqrt{n}} \to Z$ weakly,
       where $Z$ is $N(0,1)$. Why or why not can this convergence be in probability or almost surely?
     \end{problem}
 
