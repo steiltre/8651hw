@@ -192,9 +192,26 @@
 
     \begin{solution}
 
-      The basic idea is that we cannot get convergence in probability or almost surely because the distributions of $\frac{S_n}{\sqrt{n}}$ are
-      approaching $Z$, but for values of $n_1$ and $n_2$ very different from each other, $\frac{S_{n_1}}{\sqrt{n_1}}$ and
-      $\frac{S_{n_2}}{\sqrt{n_2}}$ may look very different and may be close to independent.
+      Let
+      \[ A_n = \frac{1}{\sqrt{n}} \sum_{k=1}^n X_i \]
+      and
+      \[ B_n = \frac{1}{\sqrt{n}} \sum_{k=n+1}^{2n} X_i .\]
+
+      Then $A_n$ and $B_n$ are independent for all $n$, and under the assumptions of the Central Limit Theorem, $A_n \to Z$ and $B_n \to Z$.
+
+      Let's assume that we have $A_n \to Z$ in probability as well. Then $B_n \to Z$ in probability also. This means
+      \[ P( |Z-A_n| > \varepsilon ) \to 0 \]
+      and
+      \[ P( |Z-B_n| > \varepsilon ) \to 0 \]
+      as $n \to \infty$. We have
+      \[ \{ |A_n - B_n| > 2 \varepsilon \} \subseteq \{ |Z-A_n| > \varepsilon \} \cup \{ |Z-B_n| > \varepsilon \} .\]
+      Therefore,
+      \begin{align*}
+        P( \{ |A_n - B_n| > 2 \varepsilon \} ) &\leq P( \{ |Z-A_n| > \varepsilon \} ) + P( \{ |Z-B_n| > \varepsilon \} ) \\
+        &\quad \to 0 \text{ as } n \to \infty
+      \end{align*}
+
+      This contradicts the independence of $A_n$ and $B_n$.
 
     \end{solution}
 
