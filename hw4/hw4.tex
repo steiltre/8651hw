@@ -54,7 +54,7 @@
       Let $X_k, Y_k, k=1,2, \dots$ and $X,Y$ be random variables on the same probability space $(\Omega, F, P)$.
       \begin{enumerate}
         \item If $X_k \to X$ in distribution and $Y_k \to Y$ in distribution as $k \to \infty$, is it necessarily true that $(X_k, Y_k) \to (X,Y)$ in
-          distribution? (Interpret this to mean $\E [ f(X_k, Y_k) ] \to E[ f(X,Y) ]$ as $k \to \infty$ for all bounded, continuous $f: \R^2 \to \R$.)
+          distribution? (Interpret this to mean $\E [ f(X_k, Y_k) ] \to \E[ f(X,Y) ]$ as $k \to \infty$ for all bounded, continuous $f: \R^2 \to \R$.)
 
         \item If $X_k \to X$ and $Y_k \to Y$ in probability, is it necessarily true that $(X_k,Y_k) \to (X,Y)$ in probability?
 
@@ -66,17 +66,27 @@
 
       \begin{enumerate}
         \item
-          Let $f: \R^2 \to \R$ be a bounded, continuous function. Let $F_k$, $F$, $G_k$, and $G$ be the distribution functions for $X_k, X, Y_k$ and $Y$, respectively.
-          Each of these measures is finite. Therefore, because $f$ is bounded, we have
-          \[ \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} |f(x,y)| (F_n \times G_k)(dx \times dy) < \infty \]
-          by Tonelli's Theorem. Therefore, we can use Fubini's Theorem to get for any fixed $k$
+          This claim is not true. Let $X_k$ be iid copies of a random variable $X$ that takes the value 1 with probability $\frac{1}{2}$ and 0 with
+          probability $\frac{1}{2}$. Let $Y_k = 1 - X_k$. We see that $X_k$ and $Y_k$ have the same distribution but are not independent.
+          Then $X_k \to X$ in distribution because all of the $X_k$ have the same distribution.
+          Similarly, $Y_k \to Y$ in distribution, where we will let $X$ and $Y$ be independent.
+
+          Take the continuous function $f(x,y) = e^{x + y}$. Then for any $k$,
           \begin{align*}
-            \lim_{n \to \infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) (F_k \times G_n)(dx \times dy) &= \int_{-\infty}^{\infty} f(x,y)
-            F_k(dx) G(dy)
+            f(X_k, Y_k) &= e^{X_k + Y_k} \\
+            &= e
           \end{align*}
-          and similarly with $k$ and $n$ switched and $F_k$ and $G_k$ replaced with $F$ and $G$. Therefore,
-          \[ \lim_{n \to \infty} \int_{\R^2}^{} f(x,y) (F_n \times G_n) (dx \times dy) = \int_{\R^2}^{} f(x,y) (F \times G) (dx \times dy) \]
-          and $(X_k, Y_k) \to (X,Y)$ in distribution.
+          on all of $\Omega$. Therefore,
+          \[ \E[f(X_k, Y_k)] = e \]
+          for all $k$.
+
+          For $e^{X+Y}$, we have $P(e^{X+Y}=1)=\frac{1}{4}$, $P(e^{X+Y} = e) = \frac{1}{2}$, and $P(e^{X+Y} = e^2) = \frac{1}{4}$ because $X$ and $Y$
+          are independent. Therefore,
+          \begin{align*}
+            \E[e^{X+Y}] &= \frac{1}{4} + \frac{1}{2}e + \frac{1}{4} e^2 \\
+            &\neq e \\
+            &= \lim_{k \to \infty} \E[e^{X_k + Y_k}]
+          \end{align*}
 
         \item
           Assume $X_n \to X$ and $Y_n \to Y$ in probability. We are interested in $\{ |(X_n, Y_n) - (X,Y)| > \varepsilon \}$. If $|(X_n, Y_n) - (X,Y)| > \varepsilon$,
@@ -192,26 +202,42 @@
 
     \begin{solution}
 
-      Let
-      \[ A_n = \frac{1}{\sqrt{n}} \sum_{k=1}^n X_i \]
-      and
-      \[ B_n = \frac{1}{\sqrt{n}} \sum_{k=n+1}^{2n} X_i .\]
+      The convergence in the Central Limit Theorem cannot be in probability. Assume $\frac{1}{\sqrt{n}}S_n \to Z$ in probability. Then we would have
+      $\frac{1}{\sqrt{2n}}S_{2n} \to Z$ in probability as well.
 
-      Then $A_n$ and $B_n$ are independent for all $n$, and under the assumptions of the Central Limit Theorem, $A_n \to Z$ and $B_n \to Z$.
-
-      Let's assume that we have $A_n \to Z$ in probability as well. Then $B_n \to Z$ in probability also. This means
-      \[ P( |Z-A_n| > \varepsilon ) \to 0 \]
+      Define
+      \[ W_n = \frac{S_{2n} - S_n}{\sqrt{2n}} \]
       and
-      \[ P( |Z-B_n| > \varepsilon ) \to 0 \]
-      as $n \to \infty$. We have
-      \[ \{ |A_n - B_n| > 2 \varepsilon \} \subseteq \{ |Z-A_n| > \varepsilon \} \cup \{ |Z-B_n| > \varepsilon \} .\]
-      Therefore,
+      \[ Y_n = \frac{S_n}{\sqrt{n}} \left( \frac{1}{\sqrt{2}} - 1 \right) .\]
+      By definition, $W_n$ and $Y_n$ are independent because $W_n$ contains a sum of $X_k$ for $k \leq n$, and $Y_n$ contains a sum of $X_k$ for
+      $k>n$.
+
+      We have that
       \begin{align*}
-        P( \{ |A_n - B_n| > 2 \varepsilon \} ) &\leq P( \{ |Z-A_n| > \varepsilon \} ) + P( \{ |Z-B_n| > \varepsilon \} ) \\
-        &\quad \to 0 \text{ as } n \to \infty
+        W_n - Y_n &= \frac{S_{2n} - S_n}{\sqrt{2n}} - \frac{S_n}{\sqrt{n}} \left( \frac{1}{\sqrt{2}} - 1 \right) \\
+        &= \frac{S_{2n}}{\sqrt{2n}} - \frac{S_n}{\sqrt{n}}
       \end{align*}
 
-      This contradicts the independence of $A_n$ and $B_n$.
+      This means
+      \begin{align*}
+        |W_n - Y_n| &= \left| \frac{S_{2n}}{\sqrt{2n}} - \frac{S_n}{\sqrt{n}} \right| \\
+        &\leq \left| \frac{S_{2n}}{\sqrt{2n}} - Z \right| + \left| \frac{S_n}{\sqrt{n}} - Z \right|
+      \end{align*}
+
+      Therefore,
+      \begin{align*}
+        P \left( \left| W_n - Y_n \right| > 2 \varepsilon \right) &\leq P \left( \left| \frac{S_{2n}}{\sqrt{2n}} - Z \right| > \varepsilon \right) + P
+        \left( \left| \frac{S_n}{\sqrt{n}} - Z \right| > \varepsilon \right) \\
+        &\quad \to 0 \text{ as } n \to \infty
+      \end{align*}
+      by our assumption of convergence in probability.
+
+      Therefore, the $W_n$ and $Y_n$ are independent and growing closer in probability. This means $W_n$ and $Y_n$ are growing closer to constant. But
+      we know $W_n, Y_n \to Z$ in distribution, which is a contradiction. Thus, we cannot get convergence in probability from the Central Limit
+      Theorem.
+
+      We also can't get almost sure convergence because almost sure convergence implies convergence in probability. So if we could, we would be given
+      convergence in probability as well, which we just established isn't possible.
 
     \end{solution}
 
